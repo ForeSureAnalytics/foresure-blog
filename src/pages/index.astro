@@ -1,18 +1,23 @@
 ---
-import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
-
-type BlogPost = CollectionEntry<'blog'>;
-const posts = await getCollection('blog') as BlogPost[];
+const modules = import.meta.glob('../content/blog/*.md', { eager: true });
+const posts = Object.entries(modules).map(([path, post]) => {
+  const slug = path.split('/').pop().replace('.md','');
+  const { title, pubDate } = post.frontmatter;
+  return { slug, title, pubDate };
+});
 ---
 
-<h1>ForeSure Analytics Blog</h1>
-<ul>
-  {posts.map(post => (
-    <li>
-      <a href={`/blog/${post.slug}/`}>
-        {post.data.title} – {post.data.pubDate}
-      </a>
-    </li>
-  ))}
-</ul>
+<main style="max-width:600px;margin:2rem auto;font-family:sans-serif;">
+  <h1>ForeSure Analytics Blog</h1>
+  <ul>
+    {posts.map(p => (
+      <li style="margin:0.5rem 0;">
+        <a href={`/blog/${p.slug}/`} style="text-decoration:none;color:#0066cc;">
+          {p.title} <small>({p.pubDate})</small>
+        </a>
+      </li>
+    ))}
+  </ul>
+</main>
+
+

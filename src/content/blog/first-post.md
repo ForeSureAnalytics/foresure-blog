@@ -1,11 +1,9 @@
 ---
 title: "Why Most Inventory Reports Fail Small Biz Owners"
-pubDate: 2025-07-07
-description: "Learn how to fix outdated inventory reports and start making decisions with confidence."
-author: "Douglas Davis"
-tags: ["forecasting", "ops", "reporting"]
+pubDate: "2025-07-10"
+description: "An introduction to the challenges of outdated inventory reporting."
 ---
 
-**Inventory reports aren’t just boring—they're broken.**
+**Inventory reports aren’t just broken—they’re hidden liabilities.**
 
-Here's why most businesses are flying blind—and what to do instead.
+Here’s why the typical spreadsheet approach fails and how you can start fixing it today.
