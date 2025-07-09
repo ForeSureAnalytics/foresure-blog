@@ -1,16 +1,18 @@
 ---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 
+type BlogPost = CollectionEntry<'blog'>;
+const posts = await getCollection('blog') as BlogPost[];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<h1>ForeSure Analytics Blog</h1>
+<ul>
+  {posts.map(post => (
+    <li>
+      <a href={`/blog/${post.slug}/`}>
+        {post.data.title} – {post.data.pubDate}
+      </a>
+    </li>
+  ))}
+</ul>
