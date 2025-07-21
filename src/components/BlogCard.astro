@@ -1,0 +1,78 @@
+---
+export interface Props {
+  slug: string;
+  title: string;
+  pubDate: string;
+  description?: string;
+}
+const { slug, title, pubDate, description } = Astro.props;
+---
+<article class="card">
+  <a href={`/blog/${slug}/`} class="card-link">
+    <img src={`https://source.unsplash.com/random/560x315?business&${slug}`} width="560" height="315" alt="" loading="lazy" />
+    <div class="card-content">
+      <h2 class="card-title">{title}</h2>
+      {description && <p class="card-excerpt">{description}</p>}
+      <p class="card-meta">{pubDate}</p>
+      <span class="read-link">Read article</span>
+    </div>
+  </a>
+</article>
+
+<style>
+.card {
+  border-radius: var(--space-2);
+  overflow: hidden;
+  background: #fff;
+  transition: transform .15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow .15s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.card img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  transition: transform .15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card:hover img {
+  transform: scale(1.05);
+}
+.card-link {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
+.card-link:focus {
+  outline: 2px solid var(--fs-blue-gray);
+  outline-offset: 2px;
+}
+.card-content {
+  padding: var(--space-3);
+}
+.card-title {
+  font-size: var(--h3-size);
+  line-height: var(--h3-line);
+  margin-bottom: var(--space-2);
+}
+.card-excerpt {
+  font-size: var(--body-size);
+  line-height: var(--body-line);
+  margin: 0 0 var(--space-2) 0;
+  height: calc(var(--body-line) * 3);
+  overflow: hidden;
+}
+.card-meta {
+  font-size: var(--body-small-size);
+  color: var(--fs-slate);
+  opacity: 0.6;
+  margin-bottom: var(--space-2);
+}
+.read-link {
+  font-size: var(--body-small-size);
+  color: var(--fs-blue-gray);
+  text-decoration: underline;
+}
+</style>

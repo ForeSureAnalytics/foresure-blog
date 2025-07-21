@@ -1,0 +1,28 @@
+@import './tokens.css';
+
+html {
+  font-family: var(--font-body);
+  background: var(--fs-gray-light);
+  color: var(--fs-navy);
+}
+
+body {
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-heading);
+  margin: 0;
+}
+
+a {
+  color: var(--fs-blue-gray);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+a:focus {
+  outline: 2px solid var(--fs-blue-gray);
+  outline-offset: 2px;
+}

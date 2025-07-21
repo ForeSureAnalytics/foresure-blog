@@ -1,23 +1,73 @@
 ---
+import '../styles/global.css';
+import BlogCard from '../components/BlogCard.astro';
+
 const modules = import.meta.glob('../content/blog/*.md', { eager: true });
 const posts = Object.entries(modules).map(([path, post]) => {
-  const slug = path.split('/').pop()!.replace('.md','');
-  const { title, pubDate } = (post as any).frontmatter;
-  return { slug, title, pubDate };
+  const slug = path.split('/').pop().replace('.md', '');
+  const { title, pubDate, description } = (post as any).frontmatter;
+  return { slug, title, pubDate, description };
 });
 ---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>ForeSure Analytics Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="hero">
+      <p>Clear data, actionable insights for small-business owners.</p>
+    </header>
+    <section class="util-bar">
+      <input type="search" placeholder="Search" aria-label="Search posts" />
+      <select aria-label="Filter by category">
+        <option>All categories</option>
+        <option>Inventory</option>
+        <option>Sales</option>
+      </select>
+    </section>
+    <main class="post-grid">
+      {posts.map(p => <BlogCard {...p} />)}
+    </main>
+  </body>
+</html>
 
-<main style="max-width:600px;margin:2rem auto;font-family:sans-serif;">
-  <h1>ForeSure Analytics Blog</h1>
-  <ul>
-    {posts.map(p => (
-      <li style="margin:0.5rem 0;">
-        <a href={`/blog/${p.slug}/`} style="text-decoration:none;color:#0066cc;">
-          {p.title} <small>({p.pubDate})</small>
-        </a>
-      </li>
-    ))}
-  </ul>
-</main>
+<style>
+.hero {
+  background: var(--fs-gray-light);
+  border-bottom: 1px solid var(--fs-blue-gray);
+  padding: var(--space-5) var(--space-5);
+  font-size: var(--h1-size);
+  font-family: var(--font-heading);
+  line-height: var(--h1-line);
+  color: var(--fs-navy);
+}
 
+.util-bar {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-5);
+  font-size: var(--body-small-size);
+  font-weight: 600;
+}
 
+.util-bar input,
+.util-bar select {
+  padding: var(--space-1);
+  border: 1px solid var(--fs-gray-medium);
+  border-radius: var(--space-1);
+  font-size: var(--body-small-size);
+}
+
+.post-grid {
+  max-width: var(--screen-lg);
+  margin: var(--space-5) auto;
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  padding: 0 var(--space-5);
+}
+</style>

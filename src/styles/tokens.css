@@ -1,0 +1,42 @@
+:root {
+  --fs-gray-light: #F2F2F2;
+  --fs-gray-medium: #D1D5DB;
+  --fs-navy: #1E293B;
+  --fs-slate: #374151;
+  --fs-blue-gray: #64748B;
+
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Open Sans', sans-serif;
+
+  --h1-size: 48px;
+  --h1-line: 56px;
+  --h1-weight: 700;
+  --h2-size: 36px;
+  --h2-line: 44px;
+  --h2-weight: 600;
+  --h3-size: 28px;
+  --h3-line: 36px;
+  --h3-weight: 500;
+  --h4-size: 24px;
+  --h4-line: 32px;
+  --h4-weight: 500;
+  --h5-size: 20px;
+  --h5-line: 28px;
+  --h5-weight: 500;
+  --body-large-size: 18px;
+  --body-large-line: 28px;
+  --body-size: 16px;
+  --body-line: 24px;
+  --body-small-size: 14px;
+  --body-small-line: 20px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+
+  --screen-sm: 640px;
+  --screen-md: 960px;
+  --screen-lg: 1280px;
+}
