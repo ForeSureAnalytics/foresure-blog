@@ -5,8 +5,8 @@ import BlogCard from '../components/BlogCard.astro';
 const modules = import.meta.glob('../content/blog/*.md', { eager: true });
 const posts = Object.entries(modules).map(([path, post]) => {
   const slug = path.split('/').pop().replace('.md', '');
-  const { title, pubDate, description } = (post as any).frontmatter;
-  return { slug, title, pubDate, description };
+  const { title, pubDate, description, cover_base, cover_alt } = (post as any).frontmatter;
+  return { slug, title, pubDate, description, cover_base, cover_alt };
 });
 ---
 <html lang="en">
@@ -15,6 +15,7 @@ const posts = Object.entries(modules).map(([path, post]) => {
     <title>ForeSure Analytics Blog</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://burst.shopifycdn.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
   </head>
   <body>
