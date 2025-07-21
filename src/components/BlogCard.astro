@@ -1,15 +1,30 @@
 ---
+import getCover from '../utils/getCover';
+
 export interface Props {
   slug: string;
   title: string;
   pubDate: string;
   description?: string;
+  cover_base?: string;
+  cover_alt?: string;
 }
-const { slug, title, pubDate, description } = Astro.props;
+
+const { slug, title, pubDate, description, cover_base, cover_alt } = Astro.props;
+const src = cover_base ? getCover(cover_base, 560) : '/images/placeholder-560x315.jpg';
+const srcset = cover_base ? `${getCover(cover_base, 560)} 1x, ${getCover(cover_base, 1120)} 2x` : undefined;
 ---
+
 <article class="card">
   <a href={`/blog/${slug}/`} class="card-link">
-    <img src={`https://source.unsplash.com/random/560x315?business&${slug}`} width="560" height="315" alt="" loading="lazy" />
+    <img
+      src={src}
+      srcset={srcset}
+      width="560"
+      height="315"
+      alt={cover_alt || ''}
+      loading="lazy"
+      decoding="async" />
     <div class="card-content">
       <h2 class="card-title">{title}</h2>
       {description && <p class="card-excerpt">{description}</p>}
