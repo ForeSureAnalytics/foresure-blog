@@ -7,7 +7,7 @@ export async function getStaticPaths() {
   });
 }
 
-// grab only the one that matches the URL slug
+// Load all posts and find the one matching the URL slug
 const modules = import.meta.glob('../../content/blog/*.md', { eager: true });
 const { slug } = Astro.params;
 const match = modules[`../../content/blog/${slug}.md`];
