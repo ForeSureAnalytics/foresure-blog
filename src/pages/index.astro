@@ -1,8 +1,8 @@
 ---
 const modules = import.meta.glob('../content/blog/*.md', { eager: true });
 const posts = Object.entries(modules).map(([path, post]) => {
-  const slug = path.split('/').pop().replace('.md','');
-  const { title, pubDate } = post.frontmatter;
+  const slug = path.split('/').pop()!.replace('.md','');
+  const { title, pubDate } = (post as any).frontmatter;
   return { slug, title, pubDate };
 });
 ---
