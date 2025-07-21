@@ -1,5 +1,5 @@
 ---
-title: "Why Most Inventory Reports Fail Small Biz Owners"
+title: "Why Most Inventory Reports Fail Small Business Owners"
 pubDate: "2025-07-10"
 description: "An introduction to the challenges of outdated inventory reporting."
 ---
