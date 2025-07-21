@@ -2,7 +2,7 @@
 export async function getStaticPaths() {
   const modules = import.meta.glob('../../content/blog/*.md', { eager: true });
   return Object.keys(modules).map(path => {
-    const slug = path.split('/').pop().replace('.md','');
+    const slug = path.split('/').pop()!.replace('.md','');
     return { params: { slug } };
   });
 }
@@ -10,10 +10,10 @@ export async function getStaticPaths() {
 // Load all posts and find the one matching the URL slug
 const modules = import.meta.glob('../../content/blog/*.md', { eager: true });
 const { slug } = Astro.params;
-const match = modules[`../../content/blog/${slug}.md`];
+const match = modules[`../../content/blog/${slug}.md`] as any;
 
 if (!match) {
-  throw new Error(`Post not found: ${slug}`);
+  return new Response("Post not found", { status: 404 });
 }
 
 // default export is the MD component

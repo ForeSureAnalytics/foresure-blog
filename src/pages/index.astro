@@ -1,12 +1,10 @@
 ---
 const modules = import.meta.glob('../content/blog/*.md', { eager: true });
-const posts = Object.entries(modules)
-  .map(([path, post]) => {
-    const slug = path.split('/').pop().replace('.md', '');
-    const { title, pubDate } = post.frontmatter;
-    return { slug, title, pubDate };
-  })
-  .sort((a, b) => new Date(b.pubDate).valueOf() - new Date(a.pubDate).valueOf());
+const posts = Object.entries(modules).map(([path, post]) => {
+  const slug = path.split('/').pop()!.replace('.md','');
+  const { title, pubDate } = (post as any).frontmatter;
+  return { slug, title, pubDate };
+});
 ---
 
 <main style="max-width:600px;margin:2rem auto;font-family:sans-serif;">
