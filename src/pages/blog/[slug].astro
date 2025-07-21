@@ -1,13 +1,13 @@
 ---
+import '../../styles/global.css';
 export async function getStaticPaths() {
   const modules = import.meta.glob('../../content/blog/*.md', { eager: true });
   return Object.keys(modules).map(path => {
-    const slug = path.split('/').pop()!.replace('.md','');
+    const slug = path.split('/').pop().replace('.md','');
     return { params: { slug } };
   });
 }
 
-// Load all posts and find the one matching the URL slug
 const modules = import.meta.glob('../../content/blog/*.md', { eager: true });
 const { slug } = Astro.params;
 const match = modules[`../../content/blog/${slug}.md`] as any;
@@ -16,13 +16,22 @@ if (!match) {
   return new Response("Post not found", { status: 404 });
 }
 
-// default export is the MD component
 const Content = match.default;
 const { title, pubDate } = match.frontmatter;
 ---
-
-<article class="prose mx-auto py-8">
-  <h1>{title}</h1>
-  <p><em>Published: {pubDate}</em></p>
-  <Content />
-</article>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <article class="prose mx-auto py-8" style="max-width:760px;margin:0 auto;padding:var(--space-5);">
+      <h1>{title}</h1>
+      <p><em>Published: {pubDate}</em></p>
+      <Content />
+    </article>
+  </body>
+</html>
