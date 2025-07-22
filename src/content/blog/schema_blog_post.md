@@ -1,4 +1,11 @@
-# Schema Will Be Your New Favorite Word
+---
+title: "Schema Will Be Your New Favorite Word"
+pubDate: "2025-07-21"
+description: "An introduction to the importance of a data schema"
+cover_base: "https://burst.shopifycdn.com/photos/software-programming-plan.jpg?width=1850&format=pjpg&exif=0&iptc=0"
+cover_alt: "Software Programming Plan Photo"
+photographer: "Sarah Pflug"
+---
 
 ## Why Schema Matters
 
